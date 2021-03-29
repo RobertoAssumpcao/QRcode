@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/vue.min.js"></script>
+    <script src="js/qrious.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>QRCode</title>
+</head>
+
+<body>
+    <div id="app">  
+        <h1>{{ title }}</h1>
+        <img :src="newQRCode" alt="QRCode">
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'Google',
+                text: 'www.google.com',
+                qrcode: new QRious({ size: 300 })
+            },
+            computed: {
+                newQRCode() {
+                    this.qrcode.value = this.text
+                    return this.qrcode.toDataURL()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
